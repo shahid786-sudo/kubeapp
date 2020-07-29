@@ -22,21 +22,20 @@ pipeline {
                     }
                 }
             }
-        }        
-        stage('Deploying') {
-            steps{
-			    sshagent(['kops-machine']) {
-				sh "scp -o StrictHostKeyChecking=no deployment.yml shahid@192.168.0.7:/home/shahid/"
-				script{
-					try{
-						sh "ssh shahid@192.168.0.7 kubectl apply -f ."
-					}catch(error)
-						sh "ssh shahid@192.168.0.7 kubectl create -f ."
-					}
-					
-                }
-		    }
-			
         }
-    }    
+        stage('Deploying'){
+             steps {
+               sshagent(['kops-machine']) {
+                 sh "scp -o StrictHostKeyChecking=no deployment.yml shahid@192.168.0.7:/home/shahid/"
+                 script{
+                   try{
+                     sh "ssh shahid@192.168.0.7 kubectl apply -f ."
+                   }catch(error)
+                     sh "ssh shahid@192.168.0.7 kubectl create -f ."
+                 }
+
+               }
+             }
+        }
+    }
 }
