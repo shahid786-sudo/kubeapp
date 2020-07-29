@@ -26,7 +26,7 @@ pipeline {
         stage('Deploying'){
              steps {
                sshagent(['kops-machine']) {
-                 sh "sudo cp -r deployment.yml /home/shahid/"
+                 sh "echo admin@123 | sudo -S cp deployment.yml /home/shahid/"
                  script{
                    try{
                      sh "sudo kubectl apply -f ."
