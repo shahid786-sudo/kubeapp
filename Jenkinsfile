@@ -30,9 +30,9 @@ pipeline {
                  sh 'echo jenkinsadmin | sudo -S -stdin chown shahid:shahid deployment.yml'
                  script{
                    try{
-                     sh 'echo admin@123 | sudo -S -stdin kubectl apply -f deployment.yml'
+                     sh 'echo jenkinsadmin | sudo -S -stdin kubectl apply -f deployment.yml'
                    }catch(error){
-                     sh 'echo admin@123 | sudo -S -stdin kubectl create -f deployment.yml'
+                     sh 'echo jenkinsadmin | sudo -S -stdin kubectl create -f deployment.yml'
                    }
 
                  }
