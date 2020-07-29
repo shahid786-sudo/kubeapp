@@ -23,20 +23,12 @@ pipeline {
                 }
             }
         }
-        stage('Deploying'){
+           stage('Deploying'){
              steps {
                sshagent(['kops-machine']) {
                  sh 'echo jenkinsadmin | sudo -S -stdin cp deployment.yml /home/shahid/'
-                 sh 'echo jenkinsadmin | sudo -S -stdin chown shahid:shahid deployment.yml'
-                 script{
-                   try{
-                     sh 'echo jenkinsadmin | sudo -S -stdin kubectl apply -f deployment.yml'
-                   }catch(error){
-                     sh 'echo jenkinsadmin | sudo -S -stdin kubectl create -f deployment.yml'
-                   }
-
-                 }
-
+                 sh 'chown shahid:shahid deployment.yml'
+                 sh 'chmod +x deployment.yml'
                }
              }
         }
