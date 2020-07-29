@@ -29,9 +29,9 @@ pipeline {
                  sh "echo jenkinsadmin | sudo -S -stdin cp deployment.yml /home/shahid/"
                  script{
                    try{
-                     sh "sudo kubectl apply -f ."
+                     sh "echo jenkinsadmin | sudo -S -stdin kubectl apply -f ."
                    }catch(error){
-                     sh "sudo kubectl create -f ."
+                     sh "echo jenkinsadmin | sudo -S -stdin kubectl create -f ."
                    }
 
                  }
