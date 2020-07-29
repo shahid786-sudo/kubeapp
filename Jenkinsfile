@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         }        
-        stage('Deploy to GKE') {
+        stage('Deploying') {
             steps{
 			    sshagent(['kops-machine']) {
 				sh "scp -o StrictHostKeyChecking=no deployment.yml shahid@192.168.0.7:/home/shahid/"
