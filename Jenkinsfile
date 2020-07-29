@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Deploying'){
              steps {
-               sh "kubectl create -f ."
+               sh 'kubectl create -f .'
              }
         }
     }
