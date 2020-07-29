@@ -26,12 +26,12 @@ pipeline {
         stage('Deploying'){
              steps {
                sshagent(['kops-machine']) {
-                 sh "echo jenkinsadmin | sudo -S -stdin cp deployment.yml /home/shahid/"
+                 sh 'echo jenkinsadmin | sudo -S -stdin cp deployment.yml /home/shahid/'
                  script{
                    try{
-                     sh "echo jenkinsadmin | sudo -S -stdin kubectl apply -f ."
+                     sh 'echo admin@123 | sudo -S -stdin kubectl apply -f deployment.yml'
                    }catch(error){
-                     sh "echo jenkinsadmin | sudo -S -stdin kubectl create -f ."
+                     sh 'echo admin@123 | sudo -S -stdin kubectl create -f deployment.yml'
                    }
 
                  }
