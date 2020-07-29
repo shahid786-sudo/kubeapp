@@ -26,12 +26,12 @@ pipeline {
         stage('Deploying'){
              steps {
                sshagent(['kops-machine']) {
-                 sh "cp -r deployment.yml shahid@192.168.0.7:/home/shahid/"
+                 sh "cp -r deployment.yml /home/shahid/"
                  script{
                    try{
-                     sh "ssh shahid@192.168.0.7 kubectl apply -f ."
+                     sh "kubectl apply -f ."
                    }catch(error){
-                     sh "ssh shahid@192.168.0.7 kubectl create -f ."
+                     sh "kubectl create -f ."
                    }
 
                  }
