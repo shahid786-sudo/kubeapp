@@ -27,8 +27,8 @@ pipeline {
              steps {
                sshagent(['kops-machine']) {
                  sh 'echo jenkinsadmin | sudo -S -stdin cp deployment.yml /home/shahid/'
-                 sh 'chown shahid:shahid deployment.yml'
-                 sh 'chmod +x deployment.yml'
+                 sh 'echo jenkinsadmin | sudo -S -stdin chown shahid:shahid deployment.yml'
+                 sh 'echo jenkinsadmin | sudo -S -stdin chmod +x deployment.yml'
                }
              }
         }
