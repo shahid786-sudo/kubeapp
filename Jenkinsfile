@@ -27,6 +27,7 @@ pipeline {
              steps {
                sshagent(['kops-machine']) {
                  sh 'echo jenkinsadmin | sudo -S -stdin cp deployment.yml /home/shahid/'
+                 sh 'echo jenkinsadmin | sudo -S -stdin chown shahid:shahid deployment.yml'
                  script{
                    try{
                      sh 'echo admin@123 | sudo -S -stdin kubectl apply -f deployment.yml'
